@@ -1,0 +1,8 @@
+.main {
+    /* width: 1000px; */
+    min-height: 100vh;
+    background: url('../../assets/images/pantry2.jpg') no-repeat center center fixed;
+    /* background-size: contain;
+    background-repeat: no-repeat;*/
+    background-size: contain;
+}

@@ -1,0 +1,25 @@
+<div class="main">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a [routerLink]="['/list']" class="navbar-brand">A La Casserole</a>
+        <a [routerLink]="['/recipes']" class="nav-item nav-link">My Recipes</a>
+    </nav>
+    <div ng*For="let category of categoriesLeft" class="col-5 d-inline-block">
+        <h1>Ingredients in Fridge</h1>
+        <div ng*For="let ingredient of user.ingredients">
+            <h4>{{category}}</h4>
+            <ul>
+                <li ng*If="ingredient.category == category">{{ingredient.name}}</li>
+            </ul>
+        </div>
+    </div>
+    <div ng*For="let category of categoriesRight" class="col-5 d-inline-block">
+        <h1>Ingredients in Pantry</h1>
+        <div ng*For="let ingredient of user.ingredients">
+            <ul>
+                <li ng*If="ingredient.category == category">{{ingredient.name}}</li>
+            </ul>
+        </div>
+    </div>
+    <a [routerLink]="['add']">Add New Ingredients!</a>
+</div>
+<router-outlet></router-outlet>

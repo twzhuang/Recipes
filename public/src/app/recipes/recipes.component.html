@@ -1,0 +1,80 @@
+
+<div class="container">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a [routerLink]="['/list']" class="navbar-brand">A La Casserole</a>
+    </nav>
+    <h1>Welcome to your Recipes!</h1>
+    <div id="myBtnContainer">
+        <button class="btn btn-success active" onclick="filterSelection('all')">Show all</button>
+        <button class="btn btn-success" onclick="filterSelection('made')">Recipes Made</button>
+        <button class="btn btn-success" onclick="filterSelection('saved')">Recipes Saved</button>
+    </div>
+    <div class="filterDiv made">
+        <table class="table">
+            <thead>
+                <th>Recipe Name</th>
+                <th>Recipe Rating</th>
+                <th>Actions</th>
+            </thead>
+            <tr>
+                <td>Chocolate Pizza</td>
+                <td>1/10</td>
+                <td>
+                    <button [routerLink]="['/recipes/'+recipe._id]" class="btn btn-primary">Notes</button>
+                    <button (click)=deleteRecipe(recipe._id) class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="filterDiv saved">
+        <table class="table">
+            <thead>
+                <th>Recipe Name</th>
+                <th>Actions</th>
+            </thead>
+            <tr>
+                <td>Macaroni and Cheese</td>
+                <td>
+                    <button [routerLink]="['/recipes/'+recipe._id]" class="btn btn-primary">Info</button>
+                    <button (click)=delete(recipe._id) class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- <div *ngIf="user.recipesMade" class="filterDiv made">
+        <table class="table">
+            <thead>
+                <th>Recipe Name</th>
+                <th>Recipe Rating</th>
+                <th>Actions</th>
+            </thead>
+            <tr *ngFor="recipe in user.recipesMade">
+                <td>{{recipe.recipe.name}}</td>
+                <td>{{recipe.rating}}</td>
+                <td>
+                    <button [routerLink]="['/recipes/'+recipe._id]" class="btn btn-primary">Notes</button>
+                    <button (click)=delete(recipe._id) class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div *ngIf="user.recipesSaved" class="filterDiv saved">
+        <table class="table">
+            <thead>
+                <th>Recipe Name</th>
+                <th>Actions</th>
+            </thead>
+            <tr *ngFor="recipe in user.recipesSaved">
+                <td>{{recipe.recipe.name}}</td>
+                <td>
+                    <button [routerLink]="['/recipes/'+recipe._id]" class="btn btn-primary">Info</button>
+                    <button (click)=delete(recipe._id) class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div> -->
+
+
+</div>

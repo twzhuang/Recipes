@@ -1,0 +1,34 @@
+<div class="text-center">
+    <h1>Add a New Ingredient</h1>
+</div>
+<div class="row justify-content-center my-4">
+    <form (submit)="addIngredient()" class="col-6">
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" name="newIngredient.name" [(ngModel)]="newIngredient.name">
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <!-- input field is disabled if optional field is not empty -->
+        <select class="form-control" name="newIngredient.category" [(ngModel)]="newIngredient.category" [disabled]="optional != ''">
+          <option selected></option>
+          <option>Meat</option>
+          <option>Seafood</option>
+          <option>Vegetable</option>
+          <option>Fruit</option>
+          <option>Dairy</option>
+          <option>Grain</option>
+          <option>Starch</option>
+          <option>Spice</option>
+          <option>Sauce</option>
+          <option>Dairy</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Other:</label>
+        <!-- optional field should be disabled if newIngredient.category is not empty -->
+        <input type="text" class="form-control" [disabled]="newIngredient.category != ''" name="optional" [(ngModel)]="optional">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
