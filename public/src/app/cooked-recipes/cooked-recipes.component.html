@@ -1,0 +1,21 @@
+<h2>Recipes Cooked</h2>
+<table class="table">
+    <thead>
+        <th>Recipe Name</th>
+        <th>Recipe Rating</th>
+        <th>Actions</th>
+    </thead>
+    <tr *ngFor="let recipe of recipes">
+        <td>{{recipe.title}}</td>
+        <td><button (click)=delete(recipe._id) class="btn btn-danger">Delete</button></td>
+    </tr>
+
+    <!-- <tr *ngFor="let recipe in user.recipesMade">
+        <td>{{recipe.recipe.name}}</td>
+        <td>{{recipe.rating}}</td>
+        <td>
+            <button [routerLink]="['/recipes/'+recipe._id]" class="btn btn-primary">Notes</button>
+            <button (click)=delete(recipe._id) class="btn btn-danger">Delete</button>
+        </td>
+    </tr> -->
+</table>

@@ -1,0 +1,24 @@
+<div class="">
+    <h3>Results</h3>
+    <div *ngFor="let recipe of recipes" class="my-3">
+        <img [src]="recipe.image" alt="recipeImage" class="d-inline-block">
+        <div class="row ml-5 d-inline-block">
+            <p>{{ recipe.title }}</p>
+            <button (click)="showDetails(recipe)" class="btn btn-primary">Details</button>
+        </div>
+        <div *ngIf="recipe.show">
+            <h5>Recipe Details</h5>
+            <div class="row">
+                <p>Prep time: {{ recipe.instructions.preparationMinutes }} min</p>
+                <p>Cook time: {{ recipe.instructions.cookingMinutes }} min</p>
+                <p>Total time: {{ recipe.instructions.preparationMinutes +recipe.instructions.cookingMinutes }} min</p>
+                <p>Servings: {{ recipe.instructions.servings }}</p>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <p *ngFor="let ingredient of recipe.instructions.extendedIngredients">{{ ingredient.original }}</p>
+                <p class="col-8">{{ recipe.instructions.instructions }}</p>
+            </div>
+        </div>
+    </div>
+</div>

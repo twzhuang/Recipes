@@ -6,8 +6,7 @@ var IngredientSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, "Ingredient name is a required field"],
-        minlength: [2, "Ingredient name must be at least 2 characters long"],
-        unique: true
+        minlength: [2, "Ingredient name must be at least 2 characters long"]
     },
     category: {
         type: String
@@ -16,6 +15,18 @@ var IngredientSchema = new mongoose.Schema({
 
 mongoose.model("Ingredient", IngredientSchema);
 var Ingredient = mongoose.model('Ingredient');
+
+var SavedRecipeSchema = new mongoose.Schema({
+    id: Number,
+    image: String,
+    instructions: Object,
+    title: String,
+    made: Boolean,
+    rating: Number,
+    notes: String
+});
+mongoose.model("SavedRecipe", SavedRecipeSchema);
+var SavedRecipe = mongoose.model('SavedRecipe');
 
 var UserSchema = new mongoose.Schema({
     fname: {
@@ -37,11 +48,13 @@ var UserSchema = new mongoose.Schema({
         required: [true, 'Password cannot be left empty!'],
         minlength: [6, 'Password must be at least 6 characters']
     },
-    ingredientList: [IngredientSchema]
+    ingredientList: [IngredientSchema],
+    savedRecipes: [SavedRecipeSchema]
 });
 
 mongoose.model("User", UserSchema);
 var User = mongoose.model('User');
 UserSchema.plugin(uniqueValidator, {message: "Username is already taken. Please use another one."});
+
 
 mongoose.Promise = global.Promise;

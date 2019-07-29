@@ -1,29 +1,50 @@
 const mongoose = require('mongoose'),
-      Ingredient = mongoose.model('Ingredient')
+      Ingredient = mongoose.model('Ingredient'),
+      User = mongoose.model('User')
 ;
 
 module.exports = {
     allIngredients: function(req, res) {
-        Ingredient.find({}, function(err, ingredients) {
+        User.findOne({_id: req.params.id}, function(err, user) {
             if (err) {
                 res.json({message: "Error", error: err});
             }
             else {
-                res.json(players);
+                console.log(user);
+                res.json(user.ingredientList);
             }
         });
     },
-    addIngredient: function(req, res) {
+    addIngredients: function(req, res) {
+        console.log(req.body, req.params.id);
         Ingredient.create(req.body, function(err, ingredient) {
             if (err) {
                 res.json({message: "Error", error: err});
             }
             else {
-                // console.log(ingredient);
-                res.json(ingredient);
+                console.log(ingredient);
+                User.findOneAndUpdate({_id: req.params.id}, {$push: {ingredientList: ingredient}}, {new: true}, function(err, user) {
+                    if (err) {
+                        res.json(err);
+                    }
+                    else {
+                        console.log(user);
+                        res.json(user);
+                    }
+                });
             }
         });
-    }
+    },
+    allUsers: function(req, res) {
+        User.find({}, function(err, users) {
+            if (err) {
+                res.json(err);
+            }
+            else {
+                res.json(users);
+            }
+        });
+    },
     // showIngredient: function(req, res) {
     //     console.log("Showing player", req.params.id)
     //     Ingredient.findOne({_id: req.params.id}, function(err, player) {

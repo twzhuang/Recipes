@@ -5,12 +5,27 @@ const mongoose = require('mongoose'),
       users = require('../controllers/users.js');
 ;
 module.exports = function(app){
-    app.get("/ingredients", function(req, res) {
+    app.get("/ingredients/:id", function(req, res) {
         ingredients.allIngredients(req,res);
     });
-    app.post("/ingredients", function(req, res) {
-        ingredients.addIngredient(req, res);
+    app.post("/ingredients/:id", function(req, res) {
+        console.log(req.body);
+        ingredients.addIngredients(req, res);
     });
+    app.get("/users", function(req, res){
+        ingredients.allUsers(req, res);
+    });
+    app.post('/recipes/:id', function(req, res) {
+        users.addRecipeSaved(req, res);
+    });
+    app.get('/recipes/:id', function(req, res) {
+        users.getRecipes(req, res);
+    });
+
+    app.put('/recipe/:id', function(req, res){
+        users.deleteRecipe(req, res);
+    });
+
     // app.get("/ingredients/:id", function(req, res) {
     //     ingredients.showIngredient(req, res);
     // })

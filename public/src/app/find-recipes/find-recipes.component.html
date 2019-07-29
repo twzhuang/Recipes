@@ -1,0 +1,17 @@
+<div class="container">
+    <h1>Search for Recipes!</h1>
+    <h5>Check the ingredients you'd like to use in your recipe or check "Select All Ingredients" to perform a search using all your ingredients. Also, please specify if you would like the recipes search to prioritize using as many ingredients checked as possible or to prioritize minimizing the number of ingredients you do not have!</h5>
+    <form (submit)="searchRecipes()">
+        <h4>Ingredients</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" [(ngModel)]="masterSelected" name="list_name" (change)="checkUncheckAll()">
+            <label class="form-check-label">Select All Ingredients</label>
+        </div>
+        <div class="form-check" *ngFor="let ingredient of ingredients">
+            <input class="form-check-input" type="checkbox" value="" [(ngModel)]="ingredient.selected" name="name" (change)="isAllSelected()">
+            <label class="form-check-label">{{ ingredient.name }}</label>
+        </div>
+        <button type="submit">Find Recipes</button>
+    </form>
+    <app-recipes-found *ngIf="recipes"></app-recipes-found>
+</div>

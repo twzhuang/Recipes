@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/authors');
+mongoose.connect('mongodb://localhost/recipes');
 
 // create a variable that points to the models folder
 var path = require('path');

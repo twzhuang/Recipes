@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { IngredientListComponent } from '../ingredient-list/ingredient-list.component';
 
 @Component({
   selector: 'app-add-ingredient',
@@ -9,7 +10,10 @@ import { HttpService } from '../http.service';
 export class AddIngredientComponent implements OnInit {
   newIngredient: any = {name: "", category: ""};
   optional: any = "";
-  constructor(private _httpService: HttpService) { }
+  constructor(
+      private _httpService: HttpService,
+      private _ingredientList: IngredientListComponent
+  ) { }
 
   ngOnInit() {
   }
@@ -18,11 +22,12 @@ export class AddIngredientComponent implements OnInit {
           this.newIngredient.category = this.optional;
       }
       console.log(this.newIngredient);
-      let observable = this._httpService.createIngredient(this.newIngredient);
+      let observable = this._httpService.createIngredient({ingredient: this.newIngredient, userId: localStorage.getItem('id')});
       observable.subscribe(data => {
          console.log(data);
          this.newIngredient = {name: "", category: ""};
          this.optional = "";
+         this._ingredientList.getIngredients();
       });
   }
 }

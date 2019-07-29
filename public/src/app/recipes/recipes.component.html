@@ -2,45 +2,44 @@
 <div class="container">
     <nav class="navbar navbar-light bg-light justify-content-between">
         <a [routerLink]="['/list']" class="navbar-brand">A La Casserole</a>
+        <a [routerLink]="['/search']">Search for Recipes</a>
     </nav>
     <h1>Welcome to your Recipes!</h1>
-    <div id="myBtnContainer">
-        <button class="btn btn-success active" onclick="filterSelection('all')">Show all</button>
-        <button class="btn btn-success" onclick="filterSelection('made')">Recipes Made</button>
-        <button class="btn btn-success" onclick="filterSelection('saved')">Recipes Saved</button>
+    <!-- <table class="table">
+        <thead>
+            <th>Recipe Name</th>
+            <th>Recipe Rating</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </thead>
+        <tr *ngFor="let recipe of recipes">
+            <td>{{ recipe.title }}</td>
+            <td><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
+            </td>
+
+            <td>{{ recipe.notes }}</td>
+            <td>
+                <button class="btn btn-info mx-3">View Recipe</button>
+                <button class="btn btn-danger">Remove</button>
+            </td>
+        </tr>
+    </table> -->
+    <div id="myBtnContainer" class="btn btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-success active" (click)="showBoth()">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked >Show All
+          </label>
+          <label class="btn btn-success" (click)="showCookedRecipes()">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Recipes Cooked
+          </label>
+          <label class="btn btn-success" (click)="showSavedRecipes()">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Recipes Saved
+          </label>
     </div>
-    <div class="filterDiv made">
-        <table class="table">
-            <thead>
-                <th>Recipe Name</th>
-                <th>Recipe Rating</th>
-                <th>Actions</th>
-            </thead>
-            <tr>
-                <td>Chocolate Pizza</td>
-                <td>1/10</td>
-                <td>
-                    <button [routerLink]="['/recipes/'+recipe._id]" class="btn btn-primary">Notes</button>
-                    <button (click)=deleteRecipe(recipe._id) class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-        </table>
+    <div class="row justify-content-start">
+        <app-cooked-recipes *ngIf="showCooked" class="col-6"></app-cooked-recipes>
+        <app-saved-recipes *ngIf="showSaved" class="col-6"></app-saved-recipes>
     </div>
-    <div class="filterDiv saved">
-        <table class="table">
-            <thead>
-                <th>Recipe Name</th>
-                <th>Actions</th>
-            </thead>
-            <tr>
-                <td>Macaroni and Cheese</td>
-                <td>
-                    <button [routerLink]="['/recipes/'+recipe._id]" class="btn btn-primary">Info</button>
-                    <button (click)=delete(recipe._id) class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-        </table>
-    </div>
+
 
     <!-- <div *ngIf="user.recipesMade" class="filterDiv made">
         <table class="table">

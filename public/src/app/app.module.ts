@@ -12,6 +12,12 @@ import { AddIngredientComponent } from './add-ingredient/add-ingredient.componen
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { FindRecipesComponent } from './find-recipes/find-recipes.component';
+import { RecipesFoundComponent } from './recipes-found/recipes-found.component';
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { SavedRecipesComponent } from './saved-recipes/saved-recipes.component';
+import { CookedRecipesComponent } from './cooked-recipes/cooked-recipes.component';
+import { MadeDetailsComponent } from './made-details/made-details.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +28,12 @@ import { RecipesComponent } from './recipes/recipes.component';
     LoginComponent,
     RegisterComponent,
     RecipesComponent,
+    FindRecipesComponent,
+    RecipesFoundComponent,
+    RecipeDetailsComponent,
+    SavedRecipesComponent,
+    CookedRecipesComponent,
+    MadeDetailsComponent,
   ],
   imports: [
     BrowserModule,

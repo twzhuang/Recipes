@@ -2,16 +2,15 @@
     <div class="row justify-content-center">
         <div class="col-5">
             <h1 class="my-3">Register</h1>
-            <form (submit)="register()" data-toggle="validator" role="form">
+            <form (submit)="register()">
                 <div class="form-group">
                     <label>First name:</label>
-                     <input type="text" class="form-control" required data-min-length="3" name="newUser.fname" [(ngModel)]="newUser.fname">
-                     <div class="help-block with-errors">First name must be at least 3 characters</div>
-                    <!-- <input type="text" required minlength=3 class="form-control" name="newUser.fname" [(ngModel)]="newUser.fname" #fname="ngModel"> -->
-                    <!-- <div class="alert alert-warning" *ngIf="(fname.invalid && (fname.dirty || fname.touched))">
+
+                    <input type="text" required minlength=3 class="form-control" name="newUser.fname" [(ngModel)]="newUser.fname" #fname="ngModel">
+                    <div class="alert alert-warning" *ngIf="(fname.invalid && (fname.dirty || fname.touched))">
                     <span *ngIf="fname.errors.required">Name is required</span>
                     <span *ngIf="fname.errors.minlength">Name must be at least 3 characters</span>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Last name:</label>
@@ -31,8 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input id="pw" class="form-control" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" required name="newUser.pw" [(ngModel)]="newUser.pw" #pw="ngModel">
-                    <!-- <input type="password" required minlength=6 class="form-control" name="newUser.pw" [(ngModel)]="newUser.pw" #pw="ngModel"> -->
+                    <input type="password" required minlength=6 class="form-control" name="newUser.pw" [(ngModel)]="newUser.pw" #pw="ngModel">
                     <div class="alert alert-warning" *ngIf="(pw.invalid && (pw.dirty || pw.touched))">
                     <span *ngIf="pw.errors.required">Name is required</span>
                     <span *ngIf="pw.errors.minlength">Name must be at least 3 characters</span>
@@ -40,73 +38,10 @@
                 </div>
                 <div class="form-group">
                     <label>Confirm Password:</label>
-                    <input id="password_two" class="form-control" name="password_two" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" required>
-                    <!-- <input type="password" required minlength=6 class="form-control" #pw2="ngModel"> -->
+                    <input type="password" required minlength=6 class="form-control">
                 </div>
                 <input class="btn btn-primary mr-3" type="submit" value="Register">
                 <a [routerLink]="['/login']">Login</a>
             </form>
         </div>
     </div>
-
-    <form data-toggle="validator" role="form">
-      <div class="form-group">
-        <label for="inputName" class="control-label">Name</label>
-        <input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" required>
-      </div>
-      <div class="form-group has-feedback">
-        <label for="inputTwitter" class="control-label">Twitter</label>
-        <div class="input-group">
-          <span class="input-group-addon">@</span>
-          <input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control" id="inputTwitter" placeholder="1000hz" required>
-        </div>
-        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-        <div class="help-block with-errors">Hey look, this one has feedback icons!</div>
-      </div>
-      <div class="form-group">
-        <label for="inputEmail" class="control-label">Email</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
-        <div class="help-block with-errors"></div>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword" class="control-label">Password</label>
-        <div class="form-inline row">
-          <div class="form-group col-sm-6">
-            <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
-            <div class="help-block">Minimum of 6 characters</div>
-          </div>
-          <div class="form-group col-sm-6">
-            <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
-            <div class="help-block with-errors"></div>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="radio">
-          <label>
-            <input type="radio" name="underwear" required>
-            Boxers
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="underwear" required>
-            Briefs
-          </label>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" id="terms" data-error="Before you wreck yourself" required>
-            Check yourself
-          </label>
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-
-</div>
