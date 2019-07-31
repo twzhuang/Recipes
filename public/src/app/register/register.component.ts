@@ -20,9 +20,14 @@ export class RegisterComponent implements OnInit {
   register() {
       let observable = this._httpService.createUser(this.newUser);
       observable.subscribe(data => {
-         console.log(data);
-         this._router.navigate(['/list']);
-         // redirect to ingredients page
+          console.log(data);
+          if (data['error']) {
+           this.errors = data['error'];
+          }
+          else {
+           localStorage.setItem('id', data['user']['_id']);
+           this._router.navigate(['/list']);
+          }
       });
   }
 }

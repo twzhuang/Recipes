@@ -9,6 +9,7 @@ import { HttpService } from '../http.service';
 })
 export class IngredientListComponent implements OnInit {
   user: any = localStorage.getItem('id');
+  showAdd: boolean = false;
   catLeft: any = [];
   catRight: any = [];
   categoriesLeft: any = ['Meat', 'Seafood', 'Vegetable', 'Fruit', 'Dairy'];
@@ -20,24 +21,29 @@ export class IngredientListComponent implements OnInit {
       this.getIngredients();
 
   }
+  showAddComponent() {
+      this.showAdd = true;
+  }
   getIngredients() {
       let observable = this._httpService.getIngredients();
       observable.subscribe(data => {
           console.log(data);
-          this.ingredients = data;
-           for (let ingredient of this.ingredients) {
-               if (this.categoriesLeft.includes(ingredient.category)) {
-                   if (!this.catLeft.includes(ingredient.category)) {
-                       this.catLeft.push(ingredient.category);
+          if (!data['error']) {
+              this.ingredients = data;
+              for (let ingredient of this.ingredients) {
+                   if (this.categoriesLeft.includes(ingredient.category)) {
+                       if (!this.catLeft.includes(ingredient.category)) {
+                           this.catLeft.push(ingredient.category);
+                       }
+                   }
+                   if (this.categoriesRight.includes(ingredient.category)) {
+                       if (!this.catRight.includes(ingredient.category)) {
+                           this.catRight.push(ingredient.category);
+                       }
                    }
                }
-               if (this.categoriesRight.includes(ingredient.category)) {
-                   if (!this.catRight.includes(ingredient.category)) {
-                       this.catRight.push(ingredient.category);
-                   }
-               }
+               console.log(this.catLeft, this.catRight);
            }
-           console.log(this.catLeft, this.catRight);
       })
   }
 

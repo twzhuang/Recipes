@@ -16,12 +16,15 @@ export class AddIngredientComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+      var element = document.getElementById("add");
+      element.scrollIntoView();
   }
   addIngredient() {
       if (this.newIngredient.category == "") {
           this.newIngredient.category = this.optional;
       }
       console.log(this.newIngredient);
+      console.log(localStorage);
       let observable = this._httpService.createIngredient({ingredient: this.newIngredient, userId: localStorage.getItem('id')});
       observable.subscribe(data => {
          console.log(data);
