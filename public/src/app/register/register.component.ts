@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
       let observable = this._httpService.createUser(this.newUser);
       observable.subscribe(data => {
          console.log(data);
+         this._router.navigate(['/list']);
          // redirect to ingredients page
       });
   }
