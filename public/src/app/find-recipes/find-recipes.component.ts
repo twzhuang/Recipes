@@ -13,6 +13,7 @@ export class FindRecipesComponent implements OnInit {
   checkedList: any;
   masterSelected: boolean = false;
   recipes: any;
+  showResults: boolean;
   constructor(
       private _httpService: HttpService,
       private _router: Router,
@@ -22,6 +23,8 @@ export class FindRecipesComponent implements OnInit {
   ngOnInit() {
       this.getIngredients();
       console.log(JSON.parse(localStorage.getItem('recipes')));
+      this.showResults = JSON.parse(localStorage.getItem('showResults'));
+      console.log(this.showResults);
   }
   getIngredients() {
       let observable = this._httpService.getIngredients();
@@ -49,6 +52,8 @@ export class FindRecipesComponent implements OnInit {
          console.log(data);
          this.recipes =  data;
          localStorage.setItem('recipes', JSON.stringify(this.recipes));
+         this.showResults = true;
+         localStorage.setItem("showResults", JSON.stringify(true));
          console.log(JSON.parse(localStorage.getItem('recipes')));
           // this._router.navigate(['/found']);
       });

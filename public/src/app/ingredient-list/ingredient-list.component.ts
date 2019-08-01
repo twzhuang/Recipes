@@ -19,7 +19,7 @@ export class IngredientListComponent implements OnInit {
 
   ngOnInit() {
       this.getIngredients();
-
+      localStorage.setItem("showResults", JSON.stringify(false));
   }
   showAddComponent() {
       this.showAdd = true;

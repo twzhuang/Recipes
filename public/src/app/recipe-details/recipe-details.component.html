@@ -4,7 +4,7 @@
         <a [routerLink]="['/list']" class="navbar-brand">A La Casserole</a>
         <a [routerLink]="['/recipes']">My Recipes</a>
     </nav>
-    <a [routerLink]="['/found']" class="d-block">Back to search results</a>
+    <a [routerLink]="['/search']" class="d-block">Back to search results</a>
     <h1 class="d-inline-block align-middle">{{ recipe.title }}</h1>
     <div class="d-inline-block align-middle mx-3">
         <button *ngIf="!saved" (click)="saveRecipe()" class="btn btn-success"><i class="fa fa-heart"></i> Save</button>
